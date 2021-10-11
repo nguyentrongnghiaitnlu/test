@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Danh sách sản phẩm</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<h1>Danh sách sản phẩm</h1>
+		<form action="#" th:action="@{/search}" th:object="${productListForm}" method="POST">
+			<div class="row">
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-6 text-center">
+							<span>Tên sản phẩm</span>
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6">
+							<input type="text" name="productNname" th:field="*{productName}" th:value="*{productName}" />
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-6 text-center">
+							<span>Loại sản phẩm</span>
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6">
+							<select name="productType">
+								<option value="" />
+								<option th:each="productType: ${productTypes}" th:text="${productType.name}" th:value="${productType.id}" th:selected="*{productType} == ${productType.id}" />
+							</select>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<div class="row">
+						<div class="col-sm-4 col-md-4 col-lg-4 text-center">
+							<span>Mô tả</span>
+						</div>
+						<div class="col-sm-4 col-md-4 col-lg-4">	
+							<input type="text" name="description" th:field="*{description}" th:value="*{description}" size="13"/>
+						</div>
+						<div class="col-sm-4 col-md-4 col-lg-4 text-right">
+							<button type="submit" title="Tìm kiếm" value="Tìm kiếm">Tìm kiếm</button>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</form >
+		<div class="row mt-2">
+			<div class="col-sm-6 col-lg-6 text-left">
+				<button><<</button>
+				<button><</button>
+			</div>
+			<div class="col-sm-6 col-lg-6 text-right">
+				<button>></button>
+				<button>>></button>
+			</div>
+		</div>
+		<form th:action="@{/order}" th:object="${orderForm}" method="POST">
+			<div class="mt-2">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Tên sản phẩm</th>
+							<th scope="col">Loại sản phẩm</th>
+							<th scope="col">Mô tả</th>
+							<th class="text-right" scope="col">Số lượng</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="product, rowStart: ${products}">
+							<th th:text="${rowStart.index + 1}"></th>
+							<td th:text="${product.name}"></td>
+							<td th:text="${product.productType.name}"></td>
+							<td th:text="${product.description}"></td>
+							<td class="text-right">
+							<input type="text" size="4" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="mt-2">
+				<div class="pl-1">
+					<button type="submit">Đặt hàng</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+</body>
+</html>
