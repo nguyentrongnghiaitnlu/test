@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: ProjectThymeleaf
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: USER
+Implementation-Vendor-Id: com.helloworld
+Build-Jdk: 1.8.0_271
+Implementation-URL: https://spring.io/projects/spring-boot/ProjectThym
+ eleaf
+Created-By: Maven Integration for Eclipse
+
